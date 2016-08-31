@@ -46,6 +46,7 @@ var reviewsData = {
 
 // map()
 function extractReviews(reviewData) {
+  var dataArray = reviewData.data;
   function reformat(item) {
     return {
       "id" : item.id,
@@ -55,7 +56,6 @@ function extractReviews(reviewData) {
     };
   };
 
-  var dataArray = reviewData.data;
   return dataArray.map(reformat);
 }
 

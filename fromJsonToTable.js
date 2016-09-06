@@ -1,5 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Testing Site...</h1>
+    <div id="wrapper" class="">
+
+    </div>
+
+  </body>
+</html>
 
 
+
+
+
+<script>
+// javascript book assignment problem
 var MOUNTAINS = [
   {name: "Kilimanjaro", height: 5895, country: "Tanzania"},
   {name: "Everest", height: 8848, country: "Nepal"},
@@ -65,8 +84,31 @@ function buildTable(arrayOfObjects) {
     console.log('\n');
   }
 
+
+  // for(var i = 0; i < arrayOfObjects.length; i++) {
+  //   var trEl = document.createElement('tr');
+  //   var tableHeadersArray = Object.keys(arrayOfObjects[i]);
+  //
+  //   if(!headerDrawn) {
+  //     tableHeadersArray.forEach(function(header) {
+  //       var th = document.createElement('th');
+  //       var newText = document.createTextNode(header);
+  //       th.appendChild(newText);
+  //       trEl.appendChild(th);
+  //     });
+  //     //console.log(tbl);
+  //     headerDrawn = true;
+  //   } else {
+  //     console.log(arrayOfObjects[i-1]);
+  //   }
+  //
+  //   tbody.appendChild(trEl);
+  //   //console.log(arrayOfObjects[i]);
+  // }
+  //
   wrapperDom.appendChild(tbl);
 
 };
 
 buildTable(MOUNTAINS);
+</script>

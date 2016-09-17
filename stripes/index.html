@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TEST@</title>
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .prop {
+        height: 100%;
+        float: left;
+      }
+
+      .sides {
+        width: 200px;
+      }
+
+      .left {
+        background: yellow;
+      }
+
+      .right {
+        background: red;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="prop sides left"> left</div>
+    <div class="prop"></div>
+    <div class="prop sides right">right</div>
+
+    <script>
+      var bodyDom = document.body;
+      var children = bodyDom.children;
+      var middleChild = children[1];
+      var busyWidthValue = children[0].offsetWidth + children[2].offsetWidth;
+
+      let middleWidthValue =  (window.innerWidth - busyWidthValue) + 'px';
+      middleChild.style.width = middleWidthValue;
+      middleChild.style.background = 'lightblue';
+
+    </script>
+  </body>
+</html>

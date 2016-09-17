@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ALIGNED SQUARES</title>
+    <style media="screen">
+      .div1 {
+        width: 500px;
+        height: 500px;
+        border: 2px solid black;
+      }
+
+      .div2 {
+        width: 300px;
+        height: 400px;
+        border: 2px solid black;
+      }
+
+      .div3 {
+        width: 100px;
+        height: 70px;
+        border: 2px solid black;
+      }
+
+      .div4 {
+        width: 40px;
+        height: 30px;
+        border: 2px solid black;
+      }
+
+      .centerHorizontal {
+        display: block;
+        margin: auto;
+        position: relative;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="div1 el">
+      <div class=" div2 el">
+          <div class=" div3 el">
+            <div class=" div4 el">
+              <div class=" div4 el">
+
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <script charset="utf-8">
+      let body = document.body;
+
+      centerDiv(body);
+
+      function hasClass(el, className) {
+        if (el.classList)
+          return el.classList.contains(className)
+        else
+          return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+      }
+
+      function addClass(el, className) {
+        if (el.classList)
+          el.classList.add(className)
+        else if (!hasClass(el, className))
+          el.className += " " + className
+      }
+
+      // Recursive function that
+      // goes through each child of
+      // the base div and styles it
+      // appropriately
+      function centerDiv(baseDiv) {
+        var childNodes;
+        var theDiv;
+
+        if(baseDiv !== undefined) {
+          if(baseDiv.parentNode.nodeName.toUpperCase() === 'BODY') {
+            var heightDiff = (window.innerHeight - baseDiv.offsetHeight) / 2;
+            applyCenterStyles(baseDiv, heightDiff);
+            console.log('body is here');
+          }
+          childNodes = baseDiv.childNodes;
+        } else {
+          return;
+        }
+
+        for(var i = 0; i < childNodes.length; i++) {
+          var childDiv = childNodes[i];
+          if(childDiv.nodeName.toUpperCase() === 'DIV') {
+            applyCenterStyles(childDiv);
+            theDiv = childDiv;
+          }
+        };
+
+        centerDiv(theDiv);
+      }
+
+      function applyCenterStyles(domElement, optionalHeightDiff) {
+        addClass(domElement, 'centerHorizontal');
+        if(optionalHeightDiff !== undefined) {
+          domElement.style.top = optionalHeightDiff + 'px';
+        } else {
+          var parent = domElement.parentNode;
+          var parentHeight = parent.offsetHeight;
+          var childHeight = domElement.offsetHeight;
+          var diffHeight = parentHeight - childHeight;
+          var halfDiff = diffHeight / 2;
+          domElement.style.top = halfDiff + 'px';
+        }
+      }
+
+    </script>
+
+  </body>
+</html>

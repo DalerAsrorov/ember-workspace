@@ -40,3 +40,14 @@ console.log(testStr6.match(regex6));
 var testStr7 = 'Daler 123456 is a nice guy. He loves eating chocolate and programming and tries to combine both activities to not to get fat.';
 var regex7 = /\b\w+[^e]+\b/gi;
 console.log(testStr7.match(regex7));
+
+
+/* PART 2 */
+
+function fromSingleToDoubleQuote(text) {
+  var regex = /()/;
+  var replacedText = text.replace(regex);
+};
+
+var randomText = "We aren't 'Hello' type of people who're always 'afraid' of going back to 'school' and learn how to use 'double' quotes" ;
+fromSingleToDoubleQuote(randomText);

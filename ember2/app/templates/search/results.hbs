@@ -2,9 +2,7 @@
 
 <ul>
   {{#each model.results as |result|}}
-  <li>
-    {{result.trackName}}
-  </li>
+    {{#song-item song=result}}{{/song-item}} <!-- put dash always! -->
   {{/each}}
 </ul>
 

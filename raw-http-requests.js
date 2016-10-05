@@ -57,27 +57,61 @@
 //text/plain, text/html, and application/json
 
 // Problem 1 solution
-function fetchInMultipleTypes(url, type) {
-  return new Promise(function(success, fail) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.setRequestHeader("accept", type);
-    xhr.addEventListener("load", function() {
-      success(xhr.responseText);
+// function fetchInMultipleTypes(url, type) {
+//   return new Promise(function(success, fail) {
+//     var xhr = new XMLHttpRequest();
+//     xhr.open("GET", url, true);
+//     xhr.setRequestHeader("accept", type);
+//     xhr.addEventListener("load", function() {
+//       success(xhr.responseText);
+//     });
+//     xhr.send(null);
+//   })
+// }
+//
+// var url = "http://eloquentjavascript.net/author";
+// var type1 = "text/plain";
+// var type2 = "text/html";
+// var type3 = "application/json";
+// var type4 = "application/rainbows+unicorns";
+//
+// fetchInMultipleTypes(url, type4).then(function(text){
+//   console.log(text);
+
+// })
+//
+var customUrl = 'http://itp-api.herokuapp.com/code-challenges/1';
+
+getSongs().then(function(songs) {
+  console.log("Something");
+  console.log(songs);
+});
+
+console.log('raw');
+
+function getSongs() {
+  return new Promise(function(success) {
+    var req = new XMLHttpRequest();
+    req.open("GET", customUrl, true);
+    req.addEventListener("load", function() {
+      if(req.status < 400) {
+        var jsonFormatFile = JSON.parse(req.responseText);
+        var customFormattedArray = jsonFormatFile.data.map(function(song) {
+          return {
+            id: song.id,
+            price: song.attributes.price,
+            title: song.attributes.title,
+            "play-count": song.attributes['play-count']
+          }
+        });
+        success(customFormattedArray);
+      }
+      else
+        return new Error("Network error.");
     });
-    xhr.send(null);
-  })
+    req.send(null);
+  });
 }
-
-var url = "http://eloquentjavascript.net/author";
-var type1 = "text/plain";
-var type2 = "text/html";
-var type3 = "application/json";
-var type4 = "application/rainbows+unicorns";
-
-fetchInMultipleTypes(url, type4).then(function(text){
-  console.log(text);
-})
 
 // get("https://www.reddit.com/r/emberjs.json").then(
 //   function(text) {

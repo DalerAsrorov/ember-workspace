@@ -1,2 +1,11 @@
 <h1>Results</h1>
+
+<ul>
+  {{#each model.results as |result|}}
+  <li>
+    {{result.trackName}}
+  </li>
+  {{/each}}
+</ul>
+
 {{outlet}}
